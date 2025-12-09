@@ -7,13 +7,13 @@ return {
 	end,
 	config = function()
 		require("which-key").setup(
-			{
-				icons = {
-					breadcrumb = ">>", 
-					separator = "->",
-					group = "+"
-				},
-			}
+			-- {
+			-- 	icons = {
+			-- 		breadcrumb = ">>",
+			-- 		separator = "->",
+			-- 		group = "+"
+			-- 	},
+			-- }
 		)
-	end
+	end,
 }
