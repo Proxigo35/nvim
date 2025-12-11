@@ -1,6 +1,9 @@
 return {
 	{
 		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason").setup()
+		end,
 		opts = {
 			ensure_installed = {
 				"ts_ls",
@@ -19,17 +22,8 @@ return {
 		dependencies = {
 			{
 				"williamboman/mason.nvim",
-				opts = {
-					ui = {
-						icons = {
-							package_installed = "✓",
-							package_pending = "->",
-							package_uninstalled = "X",
-						},
-					},
-				},
+				"neovim/nvim-lspconfig",
 			},
-			"neovim/nvim-lspconfig",
 		},
 	},
 	{
