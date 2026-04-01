@@ -18,3 +18,4 @@ keymap.set("t", "<C-\\>", "<C-\\><C-n><cmd>tabp<CR>", { desc = "Enter 'Normal mo
 keymap.set("n", "<leader>ter", "<cmd>tabnew<CR><cmd>terminal<CR>i", { desc = "Open a terminal in a new tab" })
 keymap.set("n", "<C-c>", "\"+y", { desc = "Copy to system clipboard" })
 keymap.set("n", "<C-v>", "\"+p", { desc = "Paste to system clipboard" })
+keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
