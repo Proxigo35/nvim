@@ -31,8 +31,13 @@ return {
 		opts = {
 			ensure_installed = {
 				--"prettier", -- prettier formatter
+<<<<<<< HEAD
 				--"stylua", -- lua formatter
 				--"google-java-format",
+=======
+				"stylua", -- lua formatter
+				"google-java-format",
+>>>>>>> 91cf967 (idk)
 				--"eslint_d",
 				--"isort", -- python formatter
 				--"black", -- python formatter
