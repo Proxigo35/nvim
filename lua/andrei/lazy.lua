@@ -19,12 +19,15 @@ require("lazy").setup(
 			{import = "andrei.plugins.lsp"}
 		},
 		{
-			checker = {
-				enabled = true,
-				notify = false
+		checker = {
+			enabled = true,
+			notify = false
 		},
 		change_detection = {
 			notify = false
-		}
+		},
+		rocks = {
+    enabled = false,
+  },
 	}
 )
