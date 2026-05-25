@@ -21,4 +21,4 @@ keymap.set("n", "<leader>ter", "<cmd>tabnew<CR><cmd>terminal<CR>i", { desc = "Op
 keymap.set("n", "<C-c>", "\"+y", { desc = "Copy to system clipboard" })
 keymap.set("n", "<C-v>", "\"+p", { desc = "Paste to system clipboard" })
 keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
-keymap.set("n", "<leader>c", "<cmd>tabnew<CR><cmd>terminal<CR>iclear && g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -pedantic-errors -std=c++23 *.cpp && ./a.out<enter>", { desc = "Compile *.cpp" })
+keymap.set("n", "<leader>c", "<cmd>w<CR><cmd>tabnew<CR><cmd>terminal<CR>iclear && g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -pedantic-errors -std=c++23 *.cpp && ./a.out<enter>", { desc = "Compile *.cpp" })
