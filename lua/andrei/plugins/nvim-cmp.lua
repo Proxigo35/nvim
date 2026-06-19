@@ -32,7 +32,7 @@ return {
 				},
 				mapping = cmp.mapping.preset.insert(
 					{
-						["<Shift-Tab>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+						["<S-Tab>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 						["<Tab>"] = cmp.mapping.select_next_item(), -- next suggestion
 						["<C-b>"] = cmp.mapping.scroll_docs(-4),
 						["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -62,5 +62,19 @@ return {
 				},
 			}
 		)
+
+		cmp.setup.filetype("java", {
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+			}, {
+				{
+					name = "buffer",
+					keyword_length = 3,
+					entry_filter = function(_, context)
+						return not context.cursor_before_line:match("%.[%w_]*$")
+					end,
+				},
+			}),
+		})
 	end
 }

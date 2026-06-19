@@ -1,9 +1,6 @@
 return {
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason").setup()
-		end,
 		opts = {
 			ensure_installed = {
 				"ts_ls",
@@ -18,14 +15,18 @@ return {
 				"pyright",
 				"eslint",
 				"clangd",
+				"jdtls",
 			},
 		},
 		dependencies = {
-			{
-				"williamboman/mason.nvim",
-				"neovim/nvim-lspconfig",
-			},
+			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
+			"hrsh7th/cmp-nvim-lsp",
 		},
+		config = function(_, opts)
+			require("mason").setup()
+			require("mason-lspconfig").setup(opts)
+		end,
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",

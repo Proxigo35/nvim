@@ -23,6 +23,33 @@ return {
 			{desc = "Previous todo comment"}
 		)
 
-		todo_comments.setup()
+		local rg = vim.fn.exepath("rg")
+
+		if rg == "" then
+			for _, path in ipairs(
+				{
+					"/opt/homebrew/bin/rg",
+					"/usr/local/bin/rg",
+					"/Applications/Codex.app/Contents/Resources/rg"
+				}
+			) do
+				if vim.fn.executable(path) == 1 then
+					rg = path
+					break
+				end
+			end
+		end
+
+		todo_comments.setup(
+			{
+				highlight = {
+					pattern = [[.*<((KEYWORDS)(-\d+)?)\s*:]]
+				},
+				search = {
+					command = rg ~= "" and rg or "rg",
+					pattern = [[\b(KEYWORDS)(-\d+)?:]]
+				}
+			}
+		)
 	end
 }

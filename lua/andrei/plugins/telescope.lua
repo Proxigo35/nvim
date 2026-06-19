@@ -42,6 +42,52 @@ return {
 			}
 		)
 
+		pcall(telescope.load_extension, "todo-comments")
+
+		local function find_todos()
+			local cwd = vim.fn.getcwd()
+
+			require("todo-comments.search").search(
+				function(results)
+					local conf = require("telescope.config").values
+					local finders = require("telescope.finders")
+					local pickers = require("telescope.pickers")
+					local sorters = require("telescope.sorters")
+
+					pickers.new(
+						{cwd = cwd},
+						{
+							prompt_title = "Find Todo",
+							finder = finders.new_table(
+								{
+									results = results,
+									entry_maker = function(entry)
+										return {
+											value = entry,
+											ordinal = entry.filename .. " " .. entry.lnum .. " " .. entry.text,
+											display = string.format(
+												"%s:%s:%s %s",
+												entry.filename,
+												entry.lnum,
+												entry.col,
+												entry.text
+											),
+											filename = entry.filename,
+											lnum = entry.lnum,
+											col = entry.col
+										}
+									end
+								}
+							),
+							previewer = conf.grep_previewer({}),
+							sorter = sorters.get_generic_fuzzy_sorter()
+						}
+					):find()
+				end,
+				{cwd = cwd}
+			)
+		end
+
 		--telescope.load_extension("fzf")
 
 		-- set keymaps
@@ -51,7 +97,7 @@ return {
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", {desc = "Fuzzy find recent files"})
 		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", {desc = "Find string in cwd"})
 		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd"})
-		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", {desc = "Find todos"})
-		keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", {desc = "Find todos"})
+		keymap.set("n", "<leader>ft", find_todos, {desc = "Find todos"})
+		keymap.set("n", "<leader>fk", find_todos, {desc = "Find todos"})
 	end
 }
